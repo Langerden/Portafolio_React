@@ -55,7 +55,7 @@
       },
       {
         "school": "School #1 Maybe College?",
-        "degree": "What did you study 101",
+        "degree": "What did you study",
         "graduated": "March 2003",
         "description": "Describe your experience at school, what you learned, what useful skills you have acquired etc."
       }
@@ -77,7 +77,7 @@
     "skills": [
       {
         "name": "Git",
-        "level": "60%"
+        "level": "70%"
       },
       {
         "name": "Illustrator",
@@ -85,11 +85,11 @@
       },
       {
         "name": "ReactJs",
-        "level": "50%"
+        "level": "90%"
       },
       {
         "name": "CSS",
-        "level": "90%"
+        "level": "70%"
       },
       {
         "name": "HTML5",
