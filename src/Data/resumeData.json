@@ -54,7 +54,7 @@
         "description": "Describe your experience at school, what you learned, what useful skills you have acquired etc."
       },
       {
-        "school": "School #1 Maybe College?",
+        "school": "School #1",
         "degree": "What did you study",
         "graduated": "March 2003",
         "description": "Describe your experience at school, what you learned, what useful skills you have acquired etc."
@@ -62,7 +62,7 @@
     ],
     "work": [
       {
-        "company": "Awesome Design Studio",
+        "company": "Awesome Design St",
         "title": "Senior UX God ",
         "years": "March 2010 - Present",
         "description": "Describe work, special projects, notable achievements, what technologies you have been working with, and anything else that would be useful for an employer to know."
