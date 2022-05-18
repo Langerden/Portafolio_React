@@ -2,12 +2,13 @@ import React from 'react';
 import './About.css'
 
 function About(props) {
+   const loadImage = require.context("../../images", true);
 
    return (
       <section id="about">
          <div className="row">
             <div className="three columns">
-               <img className="profile-pic" src={`images/${props.data.image}`} alt="Foto de perfil" />
+               <img className="profile-pic" src={loadImage('./' + props.data.image)} alt="Foto de perfil" />
             </div>
             <div className="nine columns main-col">
                <h2>Sobre mí</h2>
