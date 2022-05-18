@@ -1,4 +1,5 @@
 import React from 'react';
+import './Header.css'
 
 function Header(props) {
 
@@ -15,6 +16,9 @@ function Header(props) {
                <li><a className="smoothscroll" href="#testimonials">Testimonios</a></li>
                <li><a className="smoothscroll" href="#contact">Contácteme</a></li>
             </ul>
+            <div>
+               <a className="" href="#home">Editar sitio</a>
+            </div>
          </nav>
 
          <div className="row banner">

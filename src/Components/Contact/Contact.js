@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './Contact.css'
 
 function Contact(props) {
+ const [formValues, setFormValues] = useState(resetFormValues());
 
-const handleChange = (event) => {
-   const { name, value } = event.target;
-   this.setState({ [name]: value });
-}
+ function handleChange(evt) {
+   const { name, value } = evt.target;
+
+   const newValues = {
+     ...formValues,
+     [name]: value,
+   };
+   setFormValues(newValues);
+ }
+
+ function resetFormValues() {
+   return {
+     contactName: "",
+     contactEmail: "",
+     contactSubject: "",
+     contactMessage: "",
+   };
+ }
+
+ function handleSubmit(event) {
+    event.preventDefault();
+    console.log(formValues)
+ }
 
     return (
       <section id="contact">
@@ -20,7 +41,7 @@ const handleChange = (event) => {
 
          <div className="row">
             <div className="eight columns">
-               <form action="" method="post" id="contactForm" name="contactForm">
+               <form id="contactForm" name="contactForm" onSubmit={handleSubmit}>
 					<fieldset>
                   <div>
 						   <label htmlFor="contactName">Name <span className="required">*</span></label>
@@ -39,11 +60,11 @@ const handleChange = (event) => {
 
                   <div>
                      <label htmlFor="contactMessage">Message <span className="required">*</span></label>
-                     <textarea cols="50" rows="15" id="contactMessage" name="contactMessage"></textarea>
+                     <textarea cols="50" rows="15" id="contactMessage" name="contactMessage" onChange={handleChange}></textarea>
                   </div>
 
                   <div>
-                     <button className="submit">Submit</button>
+                     <button type="submit" className="submit">Submit</button>
                      <span id="image-loader">
                         <img alt="" src="images/loader.gif" />
                      </span>
