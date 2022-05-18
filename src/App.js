@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import About from './Components/About';
-import Resume from './Components/Resume';
-import Contact from './Components/Contact';
-import Testimonials from './Components/Testimonials';
-import Portfolio from './Components/Portfolio';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
+import About from './Components/About/About';
+import Resume from './Components/Resume/Resume';
+import Contact from './Components/Contact/Contact';
+import Testimonials from './Components/Testimonials/Testimonials';
+import Portfolio from './Components/Portfolio/Portfolio';
 import data from './Data/resumeData.json';
 
 function App() {
