@@ -534,16 +534,17 @@ input[type="password"],
 input[type="email"],
 textarea,
 select {
-   display: block;
-   padding: 18px 15px;
-   margin: 0 0 24px 0;
+   /* display: block; */
+   padding: 5px 5px;
+   margin-left: 12px;
+   margin-right: 12px;
    border: 0;
    outline: none;
    vertical-align: middle;
-   min-width: 225px;
-	max-width: 100%;
-   font-size: 15px;
-   line-height: 24px;
+   /* min-width: 225px; */
+	/* max-width: 100%; */
+   /* font-size: 15px; */
+   /* line-height: 24px; */
 	color: #647373;
 	background: #D3D9D9;
 
@@ -801,7 +802,3 @@ properly.
 	margin-right: auto !important;
 	text-align: center !important;
 }
-
-
-
-

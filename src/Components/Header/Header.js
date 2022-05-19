@@ -2,6 +2,9 @@ import React from 'react';
 import './Header.css'
 
 function Header(props) {
+   function modifyEditorMode() {
+      props.setEditorMode(!props.editorMode)
+   }
 
    return (
       <header id="home">
@@ -16,15 +19,17 @@ function Header(props) {
                <li><a className="smoothscroll" href="#testimonials">Testimonios</a></li>
                <li><a className="smoothscroll" href="#contact">Contácteme</a></li>
             </ul>
-            <div>
-               <a className="" href="#home">Editar sitio</a>
-            </div>
+            {!props.editorMode ? <div>
+               <a className="" href="#home" onClick={modifyEditorMode}>Editar sitio</a>
+            </div> : null}
          </nav>
 
          <div className="row banner">
             <div className="banner-text">
                <h1 className="responsive-headline">{props.data.name}</h1>
-               <h3>Soy <span>{props.data.occupation}</span> y vivo en {props.data.address.city}. <br />{props.data.description}.</h3>
+               <h3>Soy {props.editorMode ? <input type="text" placeholder='Ocupacion' /> : <span>{props.data.occupation}</span>}
+                  y vivo en {props.editorMode ? <input type="text" placeholder='Ciudad donde vivis' /> : props.data.address.city}. <br />
+                  {props.editorMode ? <input type="text" placeholder='Descripcion de lo que haces' /> : props.data.description}.</h3>
                <hr />
                <ul className="social">
                   {props.data.social.map((network) => {
