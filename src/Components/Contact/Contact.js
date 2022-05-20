@@ -77,20 +77,6 @@ function Contact(props) {
                   <i className="fa fa-check"></i>Your message was sent, thank you!<br />
                </div>
             </div>
-
-
-            <aside className="four columns footer-widgets">
-               <div className="widget widget_contact">
-
-                  <h4>Address and Phone</h4>
-                  <p className="address">
-                     {props.name}<br />
-                     {props.street} <br />
-                     {props.city}, {props.state} {props.zip}<br />
-                     <span>{props.phone}</span>
-                  </p>
-               </div>
-            </aside>
          </div>
       </section>
    );

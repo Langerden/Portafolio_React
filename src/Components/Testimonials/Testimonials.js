@@ -2,6 +2,18 @@ import React from 'react';
 import './Testimonials.css'
 
 function Testimonials(props) {
+   function handleChange(evt) {
+      const { name, value } = evt.target;
+
+      const newValues = {
+         ...props.updatedResumeData,
+         testimonials: {
+            ...props.updatedResumeData.testimonials,
+            [name]: value
+         }
+      };
+      props.setUpdatedResumeData(newValues);
+   }
 
    return (
       <section id="testimonials">

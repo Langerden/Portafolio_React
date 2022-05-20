@@ -6,6 +6,64 @@ function Header(props) {
       props.setEditorMode(!props.editorMode)
    }
 
+   function handleChange(evt) {
+      const { name, value } = evt.target;
+
+      const newValues = {
+         ...props.data,
+         header: {
+            ...props.data.header,
+            [name]: value
+         }
+      };
+      props.setUpdatedResumeData(newValues);
+   }
+
+   function handleSocialChange(evt) {
+      const { name, value } = evt.target;
+
+      var newSocial = props.data.social;
+      if (name.endsWith('userName')) {
+         var nameSplitted = name.split('@')
+         newSocial = props.data.social.map((network) => {
+            if (network.name == nameSplitted[0]) {
+               network.userName = value;
+            }
+            return network
+         }
+         )
+      }
+
+      const newValues = {
+         ...props.data,
+         social: newSocial
+      };
+      props.setUpdatedResumeData(newValues);
+   }
+
+   function toogleCheckbox(evt) {
+      const { name, checked } = evt.target;
+      var newSocial = props.data.social;
+
+      if (name.endsWith('show')) {
+         var nameSplitted = name.split('@')
+         newSocial = props.data.social.map((network) => {
+            if (network.name == nameSplitted[0]) {
+               network.show = checked;
+               console.log(network.show)
+            }
+            return network
+         }
+         )
+      }
+
+      const newValues = {
+         ...props.data,
+         social: newSocial
+      };
+      props.setUpdatedResumeData(newValues);
+   }
+
    return (
       <header id="home">
          <nav id="nav-wrap">
@@ -19,22 +77,29 @@ function Header(props) {
                <li><a className="smoothscroll" href="#testimonials">Testimonios</a></li>
                <li><a className="smoothscroll" href="#contact">Contácteme</a></li>
             </ul>
-            {!props.editorMode ? <div>
-               <a className="" href="#home" onClick={modifyEditorMode}>Editar sitio</a>
+            {!props.editorMode ? <div className="editSite">
+               <a onClick={modifyEditorMode}>Editar sitio</a>
             </div> : null}
          </nav>
 
          <div className="row banner">
             <div className="banner-text">
-               <h1 className="responsive-headline">{props.data.name}</h1>
-               <h3>Soy {props.editorMode ? <input type="text" placeholder='Ocupacion' /> : <span>{props.data.occupation}</span>}
-                  y vivo en {props.editorMode ? <input type="text" placeholder='Ciudad donde vivis' /> : props.data.address.city}. <br />
-                  {props.editorMode ? <input type="text" placeholder='Descripcion de lo que haces' /> : props.data.description}.</h3>
+               <h1 className="responsive-headline">{props.data.about.name}</h1>
+               <h3>Soy {props.editorMode ? <input type="text" name='ocupation' onChange={handleChange} placeholder='Ocupacion' /> : <span>{props.data.header.ocupation} </span>}
+                  y vivo en {props.data.about.city}. <br />
+                  {props.editorMode ? <input type="text" name='description' onChange={handleChange} placeholder='Descripcion de lo que haces' /> : props.data.header.description}.</h3>
                <hr />
                <ul className="social">
                   {props.data.social.map((network) => {
                      return (
-                        <li key={network.name}><a href={network.url}><i className={network.className}></i></a></li>
+                        network.show || props.editorMode ?
+                           <li key={network.name}>
+                              {props.editorMode ?
+                                 <><input type="text" name={network.name + '@userName'} placeholder={network.name} onChange={handleSocialChange} />
+                                    <input type="checkbox" name={network.name + '@show'} checked={network.show} onChange={toogleCheckbox} /></>
+                                 : network.show ? <a href={network.url + network.userName}><i className={network.className}></i></a> : null}
+                           </li>
+                           : null
                      );
                   }
                   )}

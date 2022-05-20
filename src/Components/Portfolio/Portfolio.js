@@ -4,6 +4,19 @@ import './Portfolio.css'
 function Portfolio(props) {
   const loadImage = require.context("../../images/portfolio", true);
 
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+
+    const newValues = {
+       ...props.updatedResumeData,
+       portfolio: {
+          ...props.updatedResumeData.portfolio,
+          [name]: value
+       }
+    };
+    props.setUpdatedResumeData(newValues);
+ }
+
   const works = props.data.projects.map((projects) => {
     return <div key={projects.title} className="columns portfolio-item">
       <div className="item-wrap">

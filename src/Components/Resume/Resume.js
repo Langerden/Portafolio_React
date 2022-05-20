@@ -2,6 +2,18 @@ import React from 'react';
 import './Resume.css'
 
 function Resume(props) {
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+
+    const newValues = {
+       ...props.updatedResumeData,
+       resume: {
+          ...props.updatedResumeData.resume,
+          [name]: value
+       }
+    };
+    props.setUpdatedResumeData(newValues);
+ }
 
   const education = props.data.education.map((edu) => {
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import About from '../../Components/About/About';
@@ -11,40 +11,49 @@ import data2 from '../../Data/json2.json';
 
 export default function Homepage({ params }) {
     const [editorMode, setEditorMode] = useState(false);
+    const [updatedResumeData, setUpdatedResumeData] = useState(data2);
 
     const { email } = params;
-    let resumeData = data;
 
-    let resumeLS = JSON.parse(localStorage.getItem(email));
-    if(resumeLS !== undefined && resumeLS !== null) {
-        resumeData = resumeLS;
+    useEffect(function () {
+        updateFromLocalStoragerOrJson(data2)
+    }, [email])
+
+    function updateFromLocalStoragerOrJson() {
+        let resumeLS = JSON.parse(localStorage.getItem(email));
+        if (resumeLS !== undefined && resumeLS !== null) {
+            setUpdatedResumeData(resumeLS);
+        } else {
+            setUpdatedResumeData(data2)
+        }
     }
-
-    // resumeData = data2['asd@asd.asd']
 
     function saveData() {
-
+        setEditorMode(false)
+        localStorage.setItem(email, JSON.stringify(updatedResumeData));
     }
- 
+
     function cancelEdition() {
- 
+        updateFromLocalStoragerOrJson(data2);
+        setEditorMode(false)
     }
 
     return (
         <div className="App">
-            <Header data={resumeData.main} editorMode={editorMode} setEditorMode={setEditorMode} />
-            <About data={resumeData.main} editorMode={editorMode} />
-            <Resume data={resumeData.resume} editorMode={editorMode} />
-            <Portfolio data={resumeData.portfolio} editorMode={editorMode} />
-            <Testimonials data={resumeData.testimonials} editorMode={editorMode} />
-            <Contact data={resumeData} editorMode={editorMode} setEditorMode={setEditorMode} />
-            <div className="row section-head">
-            <div className="two columns header-col">
-               <button type='button' onClick={saveData} >Guardar</button>
-               <button type='button' onClick={cancelEdition}>Cancelar</button>
-            </div>
-         </div>
-            <Footer data={resumeData.main} editorMode={editorMode} />
+            <Header data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} setEditorMode={setEditorMode} />
+            <About data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
+            {/* <Resume data={resumeData.resume} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
+            <Portfolio data={resumeData.portfolio} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
+            <Testimonials data={resumeData.testimonials} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
+            <Contact data={resumeData.main} editorMode={editorMode} setEditorMode={setEditorMode} /> */}
+            {editorMode ?
+                <div className="row">
+                    <button type='button' onClick={saveData} >Guardar</button>
+                    <button type='button' onClick={cancelEdition}>Cancelar</button>
+                </div>
+                : null
+            }
+            {/* <Footer data={resumeData.main} editorMode={editorMode} /> */}
         </div>
     );
 }
