@@ -16,7 +16,7 @@ export default function Homepage({ params }) {
     const { email } = params;
 
     useEffect(function () {
-        updateFromLocalStoragerOrJson(data2)
+        updateFromLocalStoragerOrJson()
     }, [email])
 
     function updateFromLocalStoragerOrJson() {
@@ -42,8 +42,8 @@ export default function Homepage({ params }) {
         <div className="App">
             <Header data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} setEditorMode={setEditorMode} />
             <About data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
-            {/* <Resume data={resumeData.resume} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
-            <Portfolio data={resumeData.portfolio} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
+            <Resume data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
+            {/*  <Portfolio data={resumeData.portfolio} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
             <Testimonials data={resumeData.testimonials} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
             <Contact data={resumeData.main} editorMode={editorMode} setEditorMode={setEditorMode} /> */}
             {editorMode ?

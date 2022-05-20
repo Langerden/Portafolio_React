@@ -27,22 +27,35 @@ function About(props) {
             <div className="nine columns main-col">
                <h2>Sobre mí</h2>
 
-               <p>{props.data.about.aboutMe}</p>
+               {props.editorMode ? 
+               <input type="text" name='aboutMe' onChange={handleChange} placeholder='Descripcion sobre ti' /> 
+               : <p>{props.data.about.aboutMe}</p>}
                <div className="row">
                   <div className="columns contact-details">
                      <h2>Detalles de contacto</h2>
                      <p className="address">
-                        <span>{props.data.about.name}</span><br />
-                        <span>{props.data.about.street}<br />
-                           {props.data.about.city}
-                        </span><br />
-                        <span>{props.data.about.phone}</span><br />
-                        <span>{props.data.about.email}</span>
+                     {props.editorMode ? 
+                           <>
+                              <input type="text" name='name' onChange={handleChange} placeholder='Nombre' /> 
+                              <input type="text" name='street' onChange={handleChange} placeholder='Calle donde vives' /> 
+                              <input type="text" name='city' onChange={handleChange} placeholder='Ciudad donde vives' /> 
+                              <input type="text" name='phone' onChange={handleChange} placeholder='Telefono de contacto' /> 
+                              <input type="text" name='email' onChange={handleChange} placeholder='Email de contacto' /> 
+                           </>
+                        :  <>
+                              <span>{props.data.about.name}</span><br />
+                              <span>{props.data.about.street}</span><br />
+                              <span>{props.data.about.city}</span><br />
+                              <span>{props.data.about.phone}</span><br />
+                              <span>{props.data.about.email}</span>
+                           </>}
                      </p>
                   </div>
                   <div className="columns download">
                      <p>
-                        <a href={props.data.about.urlResumePdf} className="button"><i className="fa fa-download"></i>Descargar currículum</a>
+                     {props.editorMode ? 
+                     <input type="text" name='urlResumePdf' onChange={handleChange} placeholder='URL al pdf para descarga del CV' /> 
+                     : <a href={props.data.about.urlResumePdf} className="button"><i className="fa fa-download"></i>Descargar currículum</a>}
                      </p>
                   </div>
                </div>

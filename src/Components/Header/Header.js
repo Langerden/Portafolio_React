@@ -48,7 +48,7 @@ function Header(props) {
       if (name.endsWith('show')) {
          var nameSplitted = name.split('@')
          newSocial = props.data.social.map((network) => {
-            if (network.name == nameSplitted[0]) {
+            if (network.name === nameSplitted[0]) {
                network.show = checked;
                console.log(network.show)
             }
@@ -78,7 +78,7 @@ function Header(props) {
                <li><a className="smoothscroll" href="#contact">Contácteme</a></li>
             </ul>
             {!props.editorMode ? <div className="editSite">
-               <a onClick={modifyEditorMode}>Editar sitio</a>
+               <a onClick={modifyEditorMode} href="#">Editar sitio</a>
             </div> : null}
          </nav>
 
