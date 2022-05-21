@@ -82,32 +82,32 @@
         ],
         "skills": [
             {
-                "name": "Git",
-                "level": "70%"
+                "nameSkill": "Git",
+                "level": "50"
             },
             {
-                "name": "Illustrator",
-                "level": "55%"
+                "nameSkill": "Illustrator",
+                "level": "55"
             },
             {
-                "name": "ReactJs",
-                "level": "90%"
+                "nameSkill": "ReactJs",
+                "level": "90"
             },
             {
-                "name": "CSS",
-                "level": "70%"
+                "nameSkill": "CSS",
+                "level": "70"
             },
             {
-                "name": "HTML5",
-                "level": "80%"
+                "nameSkill": "HTML5",
+                "level": "80"
             },
             {
-                "name": "VueJs",
-                "level": "50%"
+                "nameSkill": "VueJs",
+                "level": "50"
             },
             {
-                "name": "MongoDB",
-                "level": "80%"
+                "nameSkill": "MongoDB",
+                "level": "80"
             }
         ]
     },

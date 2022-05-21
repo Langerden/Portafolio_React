@@ -109,3 +109,22 @@
    line-height: 42px;
    border-radius: 3px 0 0 3px;
 }
+
+.skill-elements {
+   display: flex;
+   display: row;
+   width: 100%;
+   height: 100%;
+}
+
+.skill-elements .skill-element1 {
+   height: 100%;
+   background-color: #00441c;
+   text-align: center;
+}
+
+.skill-elements .skill-element2 {
+   text-align: center;
+   height: 100%;
+   background-color: #868a90;
+}

@@ -87,7 +87,7 @@ function Header(props) {
                <h1 className="responsive-headline">{props.data.about.name}</h1>
                <h3>Soy {props.editorMode ? <input type="text" name='ocupation' onChange={handleChange} placeholder='Ocupacion' /> : <span>{props.data.header.ocupation} </span>}
                   y vivo en {props.data.about.city}. <br />
-                  {props.editorMode ? <input type="text" name='description' onChange={handleChange} placeholder='Descripcion de lo que haces' /> : props.data.header.description}.</h3>
+                  {props.editorMode ? <textarea name='description' maxLength={200} onChange={handleChange} placeholder='Descripcion de lo que haces, que te apasiona, etc' /> : props.data.header.description}.</h3>
                <hr />
                <ul className="social">
                   {props.data.social.map((network) => {

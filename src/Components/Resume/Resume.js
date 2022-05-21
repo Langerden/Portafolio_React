@@ -1,87 +1,79 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Resume.css";
 
 function Resume(props) {
-  // function handleSocialChange(evt) {
-  //   const { name, value } = evt.target;
+  const [newEducation, setNewEducation] = useState({})
+  const [newWork, setNewWork] = useState({})
+  const [newSkills, setNewSkills] = useState({})
+  const [updated, setUpdated] = useState(false)
 
-  //   var newSocial = props.data.social;
-  //   if (name.endsWith("userName")) {
-  //     var nameSplitted = name.split("@");
-  //     newSocial = props.data.social.map((network) => {
-  //       if (network.name == nameSplitted[0]) {
-  //         network.userName = value;
-  //       }
-  //       return network;
-  //     });
-  //   }
+  useEffect(function () {
+    setUpdated(false)
+  }, [updated])
 
-  //   const newValues = {
-  //     ...props.data,
-  //     social: newSocial,
-  //   };
-  //   props.setUpdatedResumeData(newValues);
-  // }
-
-  // function handleEducationChange(evt) {
-  //   const { name, value } = evt.target;
-
-  //   var newEducation = props.data.resume.education;
-  //   if (name.endsWith("userName")) {
-  //     var nameSplitted = name.split("@");
-  //     newEducation = props.data.resume.education.map((element) => {
-  //       if (element.name === nameSplitted[0]) {
-  //         element.userName = value;
-  //       }
-  //       return element;
-  //     });
-  //   }
-
-  //   const newValues = {
-  //     ...props.data,
-  //     resume: {
-  //       ...props.data.resume,
-  //       education: newEducation,
-  //     },
-  //   };
-  //   props.setUpdatedResumeData(newValues);
-  // }
-
-  // function handleSocialChange(evt) {
-  //   const { name, value } = evt.target;
-
-  //   var newSocial = props.data.social;
-  //   if (name.endsWith("userName")) {
-  //     var nameSplitted = name.split("@");
-  //     newSocial = props.data.social.map((network) => {
-  //       if (network.name == nameSplitted[0]) {
-  //         network.userName = value;
-  //       }
-  //       return network;
-  //     });
-  //   }
-
-  //   const newValues = {
-  //     ...props.data,
-  //     social: newSocial,
-  //   };
-  //   props.setUpdatedResumeData(newValues);
-  // }
-
-  var auxWork = {};
-  function handleChange(evt) {
+  function handleEducationChange(evt) {
     const { name, value } = evt.target;
-
-    auxWork = {
-      ...auxWork,
-      [name]: value,
-    };
-    console.log(auxWork);
+    const newValues = {
+      ...newEducation,
+      [name]: value
+    }
+    setNewEducation(newValues);
   }
 
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    console.log(auxWork);
+  function handleWorkChange(evt) {
+    const { name, value } = evt.target;
+    const newValues = {
+      ...newWork,
+      [name]: value
+    }
+    setNewWork(newValues);
+  }
+
+  function handleSkillsChange(evt) {
+    const { name, value } = evt.target;
+    const newValues = {
+      ...newSkills,
+      [name]: value
+    }
+    setNewSkills(newValues);
+  }
+
+  function handleFormSubmit(evt) {
+    evt.preventDefault();
+    const { name } = evt.target;
+
+    if (name === "work") {
+      props.data.resume.work.push(newWork)
+    } else if (name === "education") {
+      props.data.resume.education.push(newEducation)
+    } else if (name === "skills") {
+      props.data.resume.skills.push(newSkills)
+    }
+
+    props.setUpdatedResumeData(props.data)
+    setUpdated(true)
+    console.log(props.data)
+  }
+
+  function deleteEducationItem(evt) {
+    var index = props.data.resume.education.findIndex(element => element.school + element.degree + element.graduated === evt.target.value)
+    props.data.resume.education.splice(index, 1)
+    props.setUpdatedResumeData(props.data)
+    setUpdated(true)
+  }
+
+  function deleteWorkItem(evt) {
+    var index = props.data.resume.work.findIndex(element => element.years + element.company + element.title === evt.target.value)
+    props.data.resume.work.splice(index, 1)
+    props.setUpdatedResumeData(props.data)
+    setUpdated(true)
+  }
+
+  function deleteSkillsItem(evt) {
+    var index = props.data.resume.skills.findIndex(element => element.nameSkill === evt.target.value)
+    props.data.resume.skills.splice(index, 1)
+    props.setUpdatedResumeData(props.data)
+    setUpdated(true)
   }
 
   return (
@@ -97,7 +89,7 @@ function Resume(props) {
             <div className="twelve columns">
               {props.data.resume.education.map((edu) => {
                 return (
-                  <div key={edu.school} className="row education">
+                  <div key={edu.school + edu.degree + edu.graduated} className="row education">
                     <div className="three columns header-col">
                       <h1>
                         <span>{edu.school}</span>
@@ -110,10 +102,48 @@ function Resume(props) {
                     <div className="nine columns main-col">
                       <p>{edu.description}</p>
                     </div>
+                    {props.editorMode ? (
+                      <button type="button" onClick={deleteEducationItem} value={edu.school + edu.degree + edu.graduated}>
+                        Eliminar
+                      </button>
+                    ) : null}
                   </div>
                 );
               })}
             </div>
+            {props.editorMode ? (
+              <form name="education" onSubmit={handleFormSubmit}>
+                <input
+                  type="text"
+                  name="school"
+                  placeholder="Nombre de la institucion"
+                  onChange={handleEducationChange}
+                  required="rqeuired"
+                />
+                <input
+                  type="text"
+                  name="degree"
+                  placeholder="Titulo alcanzado"
+                  onChange={handleEducationChange}
+                  required="rqeuired"
+                />
+                <input
+                  type="text"
+                  name="graduated"
+                  placeholder="Fecha de graduacion"
+                  onChange={handleEducationChange}
+                  required="rqeuired"
+                />
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="Descripcion de lo aprendido"
+                  onChange={handleEducationChange}
+                  required="rqeuired"
+                />
+                <button type="submit" >Guardar</button>
+              </form>
+            ) : null}
           </div>
         </div>
       </div>
@@ -127,7 +157,7 @@ function Resume(props) {
         <div className="nine columns main-col">
           {props.data.resume.work.map((job) => {
             return (
-              <div key={job.company} className="row work">
+              <div key={job.years + job.company + job.title} className="row work">
                 <div className="three columns header-col">
                   <h1>
                     <span>{job.company}</span>
@@ -141,7 +171,7 @@ function Resume(props) {
                   <p>{job.description}</p>
                 </div>
                 {props.editorMode ? (
-                  <button type="button" onClick={console.log("")}>
+                  <button type="button" onClick={deleteWorkItem} value={job.years + job.company + job.title}>
                     Eliminar
                   </button>
                 ) : null}
@@ -155,25 +185,29 @@ function Resume(props) {
               type="text"
               name="company"
               placeholder="Nombre de compañia"
-              onChange={handleChange}
+              onChange={handleWorkChange}
+              required="rqeuired"
             />
             <input
               type="text"
               name="title"
               placeholder="Puesto de trabajo"
-              onChange={handleChange}
+              onChange={handleWorkChange}
+              required="rqeuired"
             />
             <input
               type="text"
               name="years"
-              placeholder="Años trabajados"
-              onChange={handleChange}
+              placeholder="Periodo trabajado"
+              onChange={handleWorkChange}
+              required="rqeuired"
             />
             <input
               type="text"
               name="description"
               placeholder="Descripcion del cargo"
-              onChange={handleChange}
+              onChange={handleWorkChange}
+              required="rqeuired"
             />
             <button type="submit" >Guardar</button>
           </form>
@@ -192,17 +226,46 @@ function Resume(props) {
             <ul className="skills">
               {props.data.resume.skills.map((skill) => {
                 return (
-                  <div key={skill.name} className="bars">
+                  <div key={skill.nameSkill} className="bars">
                     <ul className="skills">
                       <li>
-                        <span className="bar-expand" />
-                        <em>{skill.name}</em>
+                        <label>{skill.nameSkill}</label>
+                        <div className="skill-elements">
+                          <div className="skill-element1" style={{ width: skill.level + "%" }}>
+                          </div>
+                          <div className="skill-element2" style={{ width: 100 - skill.level + "%" }}>
+                          </div>
+                        </div>
                       </li>
+                      {props.editorMode ? (
+                        <button type="button" onClick={deleteSkillsItem} value={skill.nameSkill}>
+                          Eliminar
+                        </button>
+                      ) : null}
                     </ul>
                   </div>
                 );
               })}
             </ul>
+            {props.editorMode ? (
+              <form name="skills" onSubmit={handleFormSubmit}>
+                <input
+                  type="text"
+                  name="nameSkill"
+                  placeholder="Nombre de la herramienta o skill"
+                  onChange={handleSkillsChange}
+                  required="rqeuired"
+                />
+                <input
+                  type="text"
+                  name="level"
+                  placeholder="Nivel alcanzado"
+                  onChange={handleSkillsChange}
+                  required="rqeuired"
+                />
+                <button type="submit" >Guardar</button>
+              </form>
+            ) : null}
           </div>
         </div>
       </div>

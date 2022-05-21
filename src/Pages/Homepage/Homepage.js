@@ -38,6 +38,12 @@ export default function Homepage({ params }) {
         setEditorMode(false)
     }
 
+    function deleteInfo() {
+        localStorage.removeItem(email);
+        updateFromLocalStoragerOrJson(data2);
+        setEditorMode(false)
+    }
+
     return (
         <div className="App">
             <Header data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} setEditorMode={setEditorMode} />
@@ -50,6 +56,7 @@ export default function Homepage({ params }) {
                 <div className="row">
                     <button type='button' onClick={saveData} >Guardar</button>
                     <button type='button' onClick={cancelEdition}>Cancelar</button>
+                    <button type='button' onClick={deleteInfo}>Borrar mis datos</button>
                 </div>
                 : null
             }

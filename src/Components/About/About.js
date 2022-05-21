@@ -28,7 +28,7 @@ function About(props) {
                <h2>Sobre mí</h2>
 
                {props.editorMode ? 
-               <input type="text" name='aboutMe' onChange={handleChange} placeholder='Descripcion sobre ti' /> 
+               <textarea name='aboutMe' onChange={handleChange} placeholder='Descripcion sobre ti' /> 
                : <p>{props.data.about.aboutMe}</p>}
                <div className="row">
                   <div className="columns contact-details">
