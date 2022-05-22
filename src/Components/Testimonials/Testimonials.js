@@ -77,14 +77,14 @@ function Testimonials(props) {
                 <input
                   type="text"
                   name="user"
-                  placeholder="Titulo"
+                  placeholder="Nombre de persona a citar"
                   onChange={handleWorkChange}
                   required="required"
                 />
                 <input
                   type="text"
                   name="text"
-                  placeholder="Breve descriptcion"
+                  placeholder="Redactar la cita aqui"
                   onChange={handleWorkChange}
                   required="required"
                 />
