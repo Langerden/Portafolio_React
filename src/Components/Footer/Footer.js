@@ -8,7 +8,7 @@ function Footer(props) {
         <div className="twelve columns">
           <ul className="social-links">
             {props.data.social.map(function (network) {
-              return <li key={network.name}><a href={network.url + network.userName}><i className={network.className}></i></a></li>
+              return network.show ? <li key={network.name}><a href={network.url + network.userName}><i className={network.className}></i></a></li> : null
             })}
           </ul>
 

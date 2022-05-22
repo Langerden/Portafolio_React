@@ -6,41 +6,32 @@ import Resume from '../../Components/Resume/Resume';
 import Contact from '../../Components/Contact/Contact';
 import Testimonials from '../../Components/Testimonials/Testimonials';
 import Portfolio from '../../Components/Portfolio/Portfolio';
-import data from '../../Data/resumeData.json';
-import data2 from '../../Data/json2.json';
+import { getData, setData, deleteData } from '../../Services/DataServices';
 
 export default function Homepage({ params }) {
-    const [editorMode, setEditorMode] = useState(false);
-    const [updatedResumeData, setUpdatedResumeData] = useState(data2);
-
     const { email } = params;
+    var initialLoadData = getData(email);
+
+    const [editorMode, setEditorMode] = useState(false);
+    const [updatedResumeData, setUpdatedResumeData] = useState(initialLoadData);
 
     useEffect(function () {
-        updateFromLocalStoragerOrJson()
+        setUpdatedResumeData(getData(email))
     }, [email])
-
-    function updateFromLocalStoragerOrJson() {
-        let resumeLS = JSON.parse(localStorage.getItem(email));
-        if (resumeLS !== undefined && resumeLS !== null) {
-            setUpdatedResumeData(resumeLS);
-        } else {
-            setUpdatedResumeData(data2)
-        }
-    }
 
     function saveData() {
         setEditorMode(false)
-        localStorage.setItem(email, JSON.stringify(updatedResumeData));
+        setData(email, updatedResumeData);
     }
 
     function cancelEdition() {
-        updateFromLocalStoragerOrJson(data2);
+        setUpdatedResumeData(initialLoadData);
         setEditorMode(false)
     }
 
     function deleteInfo() {
-        localStorage.removeItem(email);
-        updateFromLocalStoragerOrJson(data2);
+        deleteData(email);
+        setUpdatedResumeData(initialLoadData);
         setEditorMode(false)
     }
 
@@ -49,9 +40,9 @@ export default function Homepage({ params }) {
             <Header data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} setEditorMode={setEditorMode} />
             <About data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
             <Resume data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
-            {/*  <Portfolio data={resumeData.portfolio} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
-            <Testimonials data={resumeData.testimonials} editorMode={editorMode} updatedResumeData={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} />
-            <Contact data={resumeData.main} editorMode={editorMode} setEditorMode={setEditorMode} /> */}
+            <Portfolio data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
+            <Testimonials data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
+            <Contact data={updatedResumeData} setUpdatedResumeData={setUpdatedResumeData} editorMode={editorMode} />
             {editorMode ?
                 <div className="row">
                     <button type='button' onClick={saveData} >Guardar</button>
@@ -60,7 +51,7 @@ export default function Homepage({ params }) {
                 </div>
                 : null
             }
-            {/* <Footer data={resumeData.main} editorMode={editorMode} /> */}
+            <Footer data={updatedResumeData} editorMode={editorMode} />
         </div>
     );
 }

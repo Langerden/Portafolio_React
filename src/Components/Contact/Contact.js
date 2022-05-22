@@ -4,6 +4,19 @@ import './Contact.css'
 function Contact(props) {
    const [formValues, setFormValues] = useState(resetFormValues());
 
+   function handleContactMessageChange(evt) {
+      const { name, value } = evt.target;
+
+      const newValues = {
+         ...props.data,
+         contact: {
+            ...props.data.contact,
+            [name]: value
+         }
+      };
+      props.setUpdatedResumeData(newValues);
+   }
+
    function handleChange(evt) {
       const { name, value } = evt.target;
 
@@ -35,7 +48,8 @@ function Contact(props) {
                <h1><span>Get In Touch.</span></h1>
             </div>
             <div className="ten columns">
-               <p className="lead">{props.data.contactmessage}</p>
+               <p className="lead">{props.data.contact.contactMessage}</p>
+               {props.editorMode ? <input type="text" name="contactMessage" placeholder='Escribe un texto de contacto' onChange={handleContactMessageChange} /> : null}
             </div>
          </div>
 
