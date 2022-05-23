@@ -19,28 +19,37 @@
     "social": [
       {
         "name": "facebook",
-        "url": "http://facebook.com/fulanodetal",
-        "className": "fa fa-facebook"
+        "url": "http://facebook.com/",
+        "userName": "carlosfernetero",
+        "className": "fa fa-facebook",
+        "show": true
       },
       {
         "name": "twitter",
-        "url": "http://twitter.com",
-        "className": "fa fa-twitter"
+        "url": "http://twitter.com/",
+        "userName": "carlosfernetero",
+        "className": "fa fa-twitter",
+        "show": true
       },
       {
         "name": "linkedin",
-        "url": "https://www.linkedin.com/in/fulanodetal/",
-        "className": "fa fa-linkedin"
+        "url": "https://www.linkedin.com/in/",
+        "userName": "carlosfernetero",
+        "className": "fa fa-linkedin",
+        "show": true
       },
       {
         "name": "instagram",
         "url": "http://instagram.com/fulanodetal",
-        "className": "fa fa-instagram"
+        "className": "fa fa-instagram",
+        "show": true
       },
       {
         "name": "github",
-        "url": "http://github.com/fulanodetal",
-        "className": "fa fa-github"
+        "url": "http://github.com/",
+        "userName": "carlosfernetero",
+        "className": "fa fa-github",
+        "show": true
       }
     ]
   },

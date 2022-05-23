@@ -1,0 +1,23 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-image: linear-gradient(to top, #30cfd0 0%, #280059 100%);
+}
+
+.login .login-form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+.login .login-form .login-form-label {
+    color: azure;
+}
+
+.login .login-form .login-form-btn {
+    color: azure;
+    min-width: 100px;
+}
