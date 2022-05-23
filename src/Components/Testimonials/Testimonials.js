@@ -61,6 +61,7 @@ function Testimonials(props) {
                     </blockquote>
                     {props.editorMode ? (
                       <button
+                        className="new-button"
                         type="button"
                         onClick={deleteWorkItem}
                         value={testimonials.user}
@@ -73,8 +74,9 @@ function Testimonials(props) {
               })}
             </ul>
             {props.editorMode ? (
-              <form name="work" onSubmit={handleFormSubmit}>
+              <form className="twelve columns forms-resume" name="work" onSubmit={handleFormSubmit}>
                 <input
+                  className="forms-resume-item"
                   type="text"
                   name="user"
                   placeholder="Nombre de persona a citar"
@@ -82,13 +84,14 @@ function Testimonials(props) {
                   required="required"
                 />
                 <input
+                  className="forms-resume-item"
                   type="text"
                   name="text"
                   placeholder="Redactar la cita aqui"
                   onChange={handleWorkChange}
                   required="required"
                 />
-                <button type="submit">Guardar</button>
+                <button className="new-button" type="submit">Guardar</button>
               </form>
             ) : null}
           </div>

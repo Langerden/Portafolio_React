@@ -56,6 +56,7 @@ function Portfolio(props) {
         </div>
         {props.editorMode ? (
           <button
+            className="new-button"
             type="button"
             onClick={deleteWorkItem}
             value={projects.title + projects.url}
@@ -80,8 +81,9 @@ function Portfolio(props) {
             {works}
           </div>
           {props.editorMode ? (
-            <form name="work" onSubmit={handleFormSubmit}>
+            <form className="twelve columns forms-resume" name="work" onSubmit={handleFormSubmit}>
               <input
+                className="forms-resume-item"
                 type="text"
                 name="title"
                 placeholder="Titulo"
@@ -89,6 +91,7 @@ function Portfolio(props) {
                 required="required"
               />
               <input
+                className="forms-resume-item"
                 type="text"
                 name="category"
                 placeholder="Breve descriptcion"
@@ -96,13 +99,14 @@ function Portfolio(props) {
                 required="required"
               />
               <input
+                className="forms-resume-item"
                 type="text"
                 name="url"
                 placeholder="URL al sitio"
                 onChange={handleWorkChange}
                 required="required"
               />
-              <button type="submit">Guardar</button>
+              <button className="new-button" type="submit">Guardar</button>
             </form>
           ) : null}
         </div>

@@ -20,7 +20,7 @@ function About(props) {
          <div className="row">
             <div className="three columns">
                {props.editorMode ? 
-               <input type="text" name='urlImage' onChange={handleChange} placeholder='URL a la Imagen' /> 
+               <input type="text" name='urlImage' onChange={handleChange} placeholder='URL a la Imagen de perfil' /> 
                : <img className="profile-pic" src={props.data.about.urlImage} alt="Foto de perfil" />}
 
             </div>

@@ -26,7 +26,7 @@ function Header(props) {
       if (name.endsWith('userName')) {
          var nameSplitted = name.split('@')
          newSocial = props.data.social.map((network) => {
-            if (network.name == nameSplitted[0]) {
+            if (network.name === nameSplitted[0]) {
                network.userName = value;
             }
             return network
@@ -78,7 +78,7 @@ function Header(props) {
                <li><a className="smoothscroll" href="#contact">Contácteme</a></li>
             </ul>
             {!props.editorMode ? <div className="editSite">
-               <a onClick={modifyEditorMode} href="#">Editar sitio</a>
+               <a onClick={modifyEditorMode} href="#home">Editar sitio</a>
             </div> : null}
          </nav>
 
@@ -95,7 +95,7 @@ function Header(props) {
                         network.show || props.editorMode ?
                            <li key={network.name}>
                               {props.editorMode ?
-                                 <><input type="text" name={network.name + '@userName'} placeholder={network.name} onChange={handleSocialChange} />
+                                 <><input type="text" name={network.name + '@userName'} placeholder={'usuario de ' + network.name} onChange={handleSocialChange} />
                                     <input type="checkbox" name={network.name + '@show'} checked={network.show} onChange={toogleCheckbox} /></>
                                  : network.show ? <a href={network.url + network.userName}><i className={network.className}></i></a> : null}
                            </li>

@@ -776,6 +776,7 @@ input::-moz-focus-inner {
 
 form {
    margin-bottom: 24px;
+   margin-top: 24px;
 }
 
 fieldset {
@@ -1325,4 +1326,26 @@ properly.
    margin-left: auto !important;
    margin-right: auto !important;
    text-align: center !important;
+}
+
+.new-button {
+   padding: 8px 12px;
+}
+
+.forms-resume {
+   display: flex;
+   flex-direction: column;
+   min-width: fit-content;
+   align-items: center;
+}
+
+.forms-resume .forms-resume-item {
+   min-width: 300px;
+   margin: 2px;
+}
+
+.button-grpup {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
 }

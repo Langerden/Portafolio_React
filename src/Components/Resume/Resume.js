@@ -81,7 +81,7 @@ function Resume(props) {
       <div className="row education">
         <div className="three columns header-col">
           <h1>
-            <span>Education</span>
+            <span>Educación y cursos</span>
           </h1>
         </div>
         <div className="nine columns main-col">
@@ -103,7 +103,7 @@ function Resume(props) {
                       <p>{edu.description}</p>
                     </div>
                     {props.editorMode ? (
-                      <button type="button" onClick={deleteEducationItem} value={edu.school + edu.degree + edu.graduated}>
+                      <button className="new-button" type="button" onClick={deleteEducationItem} value={edu.school + edu.degree + edu.graduated}>
                         Eliminar
                       </button>
                     ) : null}
@@ -111,47 +111,51 @@ function Resume(props) {
                 );
               })}
             </div>
-            {props.editorMode ? (
-              <form name="education" onSubmit={handleFormSubmit}>
-                <input
-                  type="text"
-                  name="school"
-                  placeholder="Nombre de la institucion"
-                  onChange={handleEducationChange}
-                  required="rqeuired"
-                />
-                <input
-                  type="text"
-                  name="degree"
-                  placeholder="Titulo alcanzado"
-                  onChange={handleEducationChange}
-                  required="rqeuired"
-                />
-                <input
-                  type="text"
-                  name="graduated"
-                  placeholder="Fecha de graduacion"
-                  onChange={handleEducationChange}
-                  required="rqeuired"
-                />
-                <input
-                  type="text"
-                  name="description"
-                  placeholder="Descripcion de lo aprendido"
-                  onChange={handleEducationChange}
-                  required="rqeuired"
-                />
-                <button type="submit" >Guardar</button>
-              </form>
-            ) : null}
           </div>
         </div>
+        {props.editorMode ? (
+            <form className="twelve columns forms-resume" name="education" onSubmit={handleFormSubmit}>
+              <input
+                className="forms-resume-item"
+                type="text"
+                name="school"
+                placeholder="Nombre de la institucion"
+                onChange={handleEducationChange}
+                required="rqeuired"
+              />
+              <input
+                className="forms-resume-item"
+                type="text"
+                name="degree"
+                placeholder="Titulo alcanzado"
+                onChange={handleEducationChange}
+                required="rqeuired"
+              />
+              <input
+                className="forms-resume-item"
+                type="text"
+                name="graduated"
+                placeholder="Fecha de graduacion"
+                onChange={handleEducationChange}
+                required="rqeuired"
+              />
+              <input
+                className="forms-resume-item"
+                type="text"
+                name="description"
+                placeholder="Descripcion de lo aprendido"
+                onChange={handleEducationChange}
+                required="rqeuired"
+              />
+              <button className="new-button" type="submit" >Agregar</button>
+            </form>
+            ) : null}
       </div>
 
       <div className="row work">
         <div className="three columns header-col">
           <h1>
-            <span>Work</span>
+            <span>Experiencia Laboral</span>
           </h1>
         </div>
         <div className="nine columns main-col">
@@ -171,7 +175,7 @@ function Resume(props) {
                   <p>{job.description}</p>
                 </div>
                 {props.editorMode ? (
-                  <button type="button" onClick={deleteWorkItem} value={job.years + job.company + job.title}>
+                  <button className="new-button" type="button" onClick={deleteWorkItem} value={job.years + job.company + job.title}>
                     Eliminar
                   </button>
                 ) : null}
@@ -180,8 +184,9 @@ function Resume(props) {
           })}
         </div>
         {props.editorMode ? (
-          <form name="work" onSubmit={handleFormSubmit}>
+          <form className="twelve columns forms-resume" name="work" onSubmit={handleFormSubmit}>
             <input
+              className="forms-resume-item"
               type="text"
               name="company"
               placeholder="Nombre de compañia"
@@ -189,6 +194,7 @@ function Resume(props) {
               required="rqeuired"
             />
             <input
+              className="forms-resume-item"
               type="text"
               name="title"
               placeholder="Puesto de trabajo"
@@ -196,6 +202,7 @@ function Resume(props) {
               required="rqeuired"
             />
             <input
+              className="forms-resume-item"
               type="text"
               name="years"
               placeholder="Periodo trabajado"
@@ -203,13 +210,14 @@ function Resume(props) {
               required="rqeuired"
             />
             <input
+              className="forms-resume-item"
               type="text"
               name="description"
               placeholder="Descripcion del cargo"
               onChange={handleWorkChange}
               required="rqeuired"
             />
-            <button type="submit" >Guardar</button>
+            <button className="new-button" type="submit" >Agregar</button>
           </form>
         ) : null}
       </div>
@@ -217,7 +225,7 @@ function Resume(props) {
       <div className="row skill">
         <div className="three columns header-col">
           <h1>
-            <span>Skills</span>
+            <span>Habilidades</span>
           </h1>
         </div>
         <div className="nine columns main-col">
@@ -238,7 +246,7 @@ function Resume(props) {
                         </div>
                       </li>
                       {props.editorMode ? (
-                        <button type="button" onClick={deleteSkillsItem} value={skill.nameSkill}>
+                        <button className="new-button" type="button" onClick={deleteSkillsItem} value={skill.nameSkill}>
                           Eliminar
                         </button>
                       ) : null}
@@ -248,8 +256,9 @@ function Resume(props) {
               })}
             </ul>
             {props.editorMode ? (
-              <form name="skills" onSubmit={handleFormSubmit}>
+              <form className="twelve columns forms-resume" name="skills" onSubmit={handleFormSubmit}>
                 <input
+                  className="forms-resume-item"
                   type="text"
                   name="nameSkill"
                   placeholder="Nombre de la herramienta o skill"
@@ -257,13 +266,14 @@ function Resume(props) {
                   required="rqeuired"
                 />
                 <input
+                  className="forms-resume-item"
                   type="text"
                   name="level"
                   placeholder="Nivel alcanzado"
                   onChange={handleSkillsChange}
                   required="rqeuired"
                 />
-                <button type="submit" >Guardar</button>
+                <button className="new-button" type="submit" >Agregar</button>
               </form>
             ) : null}
           </div>
