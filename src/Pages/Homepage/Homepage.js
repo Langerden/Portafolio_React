@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import About from "../../Components/About/About";
@@ -11,17 +12,19 @@ import { getData, setData, deleteData } from "../../Services/DataServices";
 
 export default function Homepage({ params }) {
   const { email } = params;
-  var initialLoadData = getData(email);
 
   const [editorMode, setEditorMode] = useState(false);
-  const [updatedResumeData, setUpdatedResumeData] = useState(initialLoadData);
+  const [actualResumeData, setActualResumeData] = useState({});
+  const [updatedResumeData, setUpdatedResumeData] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const [path, pushLocation] = useLocation();
 
   useEffect(
     function () {
       setLoading(true);
       getData(email).then(function (response) {
-        setUpdatedResumeData(response);
+        setActualResumeData(response);
         setLoading(false);
       });
     },
@@ -29,19 +32,18 @@ export default function Homepage({ params }) {
   );
 
   function saveData() {
-    setEditorMode(false);
     setData(email, updatedResumeData);
+    setActualResumeData(updatedResumeData)
+    setEditorMode(false);
   }
 
   function cancelEdition() {
-    setUpdatedResumeData(initialLoadData);
     setEditorMode(false);
   }
 
   function deleteInfo() {
     deleteData(email);
-    setUpdatedResumeData(initialLoadData);
-    setEditorMode(false);
+    pushLocation(`/login`);
   }
 
   return (
@@ -51,33 +53,33 @@ export default function Homepage({ params }) {
       ) : (
         <>
           <Header
-            data={updatedResumeData}
+            data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
             editorMode={editorMode}
             setEditorMode={setEditorMode}
           />
           <About
-            data={updatedResumeData}
+            data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
             editorMode={editorMode}
           />
           <Resume
-            data={updatedResumeData}
+            data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
             editorMode={editorMode}
           />
           <Portfolio
-            data={updatedResumeData}
+            data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
             editorMode={editorMode}
           />
           <Testimonials
-            data={updatedResumeData}
+            data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
             editorMode={editorMode}
           />
           <Contact
-            data={updatedResumeData}
+            data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
             editorMode={editorMode}
           />
@@ -94,7 +96,7 @@ export default function Homepage({ params }) {
               </button>
             </div>
           ) : null}
-          <Footer data={updatedResumeData} editorMode={editorMode} />
+          <Footer data={actualResumeData} editorMode={editorMode} />
         </>
       )}
     </div>
