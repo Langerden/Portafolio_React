@@ -9,6 +9,7 @@ import Testimonials from "../../Components/Testimonials/Testimonials";
 import Portfolio from "../../Components/Portfolio/Portfolio";
 import Spinner from "../../Components/Spinner/Spinner";
 import { getData, setData, deleteData } from "../../Services/DataServices";
+import CvToDownload from "../../Components/CvToDownload/CvToDownload";
 
 export default function Homepage({ params }) {
   const { email } = params;
@@ -97,6 +98,7 @@ export default function Homepage({ params }) {
             </div>
           ) : null}
           <Footer data={actualResumeData} editorMode={editorMode} />
+          <CvToDownload data={actualResumeData}></CvToDownload>
         </>
       )}
     </div>
