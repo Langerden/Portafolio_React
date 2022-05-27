@@ -1,10 +1,10 @@
-import React from 'react';
+import {React, useState} from 'react';
 import './About.css'
 
 function About(props) {
-   function handleChange(evt) {
-      const { name, value } = evt.target;
 
+   const handleChange = (evt) => {
+      const { name, value } = evt.target;
       const newValues = {
          ...props.data,
          about: {
@@ -16,6 +16,7 @@ function About(props) {
    }
 
    return (
+      <div>
       <section id="about">
          <div className="row">
             <div className="three columns">
@@ -55,7 +56,7 @@ function About(props) {
                      <p>
                         {props.editorMode ?
                            <input type="text" name='urlResumePdf' onChange={handleChange} placeholder='URL al pdf para descarga del CV' />
-                           : <a href={props.data.about.urlResumePdf} className="button"><i className="fa fa-download"></i>Descargar currículum</a>}
+                           : null}
                      </p>
                   </div>
                </div>
@@ -63,6 +64,7 @@ function About(props) {
          </div>
 
       </section>
+   </div>
    );
 }
 

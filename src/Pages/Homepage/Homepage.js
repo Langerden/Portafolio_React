@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import html2pdf from "html2pdf.js";
 import { useLocation } from "wouter";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
@@ -9,7 +10,6 @@ import Testimonials from "../../Components/Testimonials/Testimonials";
 import Portfolio from "../../Components/Portfolio/Portfolio";
 import Spinner from "../../Components/Spinner/Spinner";
 import { getData, setData, deleteData } from "../../Services/DataServices";
-import CvToDownload from "../../Components/CvToDownload/CvToDownload";
 
 export default function Homepage({ params }) {
   const { email } = params;
@@ -47,28 +47,50 @@ export default function Homepage({ params }) {
     pushLocation(`/login`);
   }
 
+  function downloadCV() {
+    html2pdf(document.getElementById("cv-to-download"), {
+      filename: `Curriculum.pdf`,
+      html2canvas: {
+        scale: 2,
+      },
+      jsPDF: {
+        orientation: "portrait",
+        unit: "in",
+        format: "A4",
+        compressPDF: true,
+        disableSmartShrinking: true,
+        pagebreak: { mode: ["avoid-all"] },
+      },
+    });
+  };
+
   return (
     <div className="App">
       {loading ? (
         <Spinner />
       ) : (
-        <>
+        <div>
           <Header
             data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
             editorMode={editorMode}
             setEditorMode={setEditorMode}
+            downloadCV={downloadCV}
           />
-          <About
-            data={actualResumeData}
-            setUpdatedResumeData={setUpdatedResumeData}
-            editorMode={editorMode}
-          />
-          <Resume
-            data={actualResumeData}
-            setUpdatedResumeData={setUpdatedResumeData}
-            editorMode={editorMode}
-          />
+          <div id="cv-to-download">
+            <About
+              data={actualResumeData}
+              setUpdatedResumeData={setUpdatedResumeData}
+              editorMode={editorMode}
+              downloadCV={downloadCV}
+            />
+            <Resume
+              data={actualResumeData}
+              setUpdatedResumeData={setUpdatedResumeData}
+              editorMode={editorMode}
+            />
+          </div>
+
           <Portfolio
             data={actualResumeData}
             setUpdatedResumeData={setUpdatedResumeData}
@@ -98,8 +120,7 @@ export default function Homepage({ params }) {
             </div>
           ) : null}
           <Footer data={actualResumeData} editorMode={editorMode} />
-          <CvToDownload data={actualResumeData}></CvToDownload>
-        </>
+        </div>
       )}
     </div>
   );
