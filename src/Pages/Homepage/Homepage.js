@@ -84,7 +84,7 @@ export default function Homepage({ params }) {
             editorMode={editorMode}
           />
           {editorMode ? (
-            <div className="button-grpup">
+            <div className="button-group">
               <button className="new-button" type="button" onClick={saveData}>
                 Guardar
               </button>
