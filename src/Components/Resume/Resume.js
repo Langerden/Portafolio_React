@@ -258,7 +258,7 @@ function Resume(props) {
             {props.editorMode ? (
               <form className="twelve columns forms-resume" name="skills" onSubmit={handleFormSubmit}>
                 <input
-                  className="forms-resume-item form-control form-control-lg row g-3"
+                  className="forms-resume-item form-control form-control-lg row"
                   type="text"
                   name="nameSkill"
                   placeholder="Nombre de la herramienta o skill"
@@ -266,7 +266,7 @@ function Resume(props) {
                   required="rqeuired"
                 />
                 <input
-                  className="forms-resume-item form-control form-control-lg row g-3"
+                  className="forms-resume-item form-control form-control-lg row mt-2"
                   type="text"
                   name="level"
                   placeholder="Nivel alcanzado"
