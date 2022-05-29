@@ -1347,10 +1347,13 @@ properly.
 
 .button-group {
    display: flex;
-   flex-direction: row;
-   justify-content: space-around;
+   flex-direction: column;
+   justify-content: start;
    position: fixed; 
    bottom: 0;
-   left: 0;
    right: 0;
+}
+
+.new-button{
+   max-width: 100px;
 }
