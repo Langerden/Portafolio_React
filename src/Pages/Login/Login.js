@@ -26,9 +26,9 @@ export default function Login() {
     return (
         <div className="login">
             <form className="login-form" onSubmit={handleSubmit}>
-                <label className="login-form-label">Ingresa tu email</label>
-                <input className="login-form-input" type="email" name="email" onChange={handleChange} required="required" />
-                <button className="login-form-btn" type="submit" >Login</button>
+                <label className="login-form-label form-label" for="email">Ingresa tu email</label>
+                <input className="login-form-input form-control " type="email" name="email" onChange={handleChange} required="required" />
+                <button className="login-form-btn mt-3" type="submit" >Login</button>
             </form>
         </div>
     );

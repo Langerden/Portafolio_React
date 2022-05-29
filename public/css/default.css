@@ -799,8 +799,9 @@ select {
    /* max-width: 100%; */
    /* font-size: 15px; */
    /* line-height: 24px; */
-   color: #647373;
-   background: #D3D9D9;
+   color: #647373 !important;
+   background: #D3D9D9 !important;
+   resize: none;
 
 }
 
@@ -812,7 +813,7 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 textarea:focus {
-   color: #B3B7BC;
+   color: #ffffff;
    background-color: #3d4145;
 }
 

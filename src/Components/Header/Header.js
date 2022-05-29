@@ -85,18 +85,18 @@ function Header(props) {
          <div className="row banner">
             <div className="banner-text">
                <h1 className="responsive-headline">{props.data.about.name}</h1>
-               <h3>Soy {props.editorMode ? <input type="text" name='ocupation' onChange={handleChange} placeholder='Ocupacion' /> : <span>{props.data.header.ocupation} </span>}
+               <h3>Soy {props.editorMode ? <input className="form-control-lg" type="text" name='ocupation' onChange={handleChange} placeholder='Ocupación' /> : <span>{props.data.header.ocupation} </span>}
                   y vivo en {props.data.about.city}. <br />
-                  {props.editorMode ? <textarea name='description' maxLength={200} onChange={handleChange} placeholder='Descripcion de lo que haces, que te apasiona, etc' /> : props.data.header.description}.</h3>
+                  {props.editorMode ? <textarea rows="4" className="form-control form-control-lg mt-2" name='description' maxLength={200} onChange={handleChange} placeholder='Descripción de lo que haces, que te apasiona, etc' /> : props.data.header.description}.</h3>
                <hr />
                <ul className="social">
                   {props.data.social.map((network) => {
                      return (
                         network.show || props.editorMode ?
-                           <li key={network.name}>
+                           <li className="mt-2 p-4" key={network.name}> 
                               {props.editorMode ?
-                                 <><input type="text" name={network.name + '@userName'} placeholder={'usuario de ' + network.name} onChange={handleSocialChange} />
-                                    <input type="checkbox" name={network.name + '@show'} checked={network.show} onChange={toogleCheckbox} /></>
+                                  <><input className="form-control form-control-lg row" type="text" name={network.name + '@userName'} placeholder={'usuario de ' + network.name} onChange={handleSocialChange} />
+                                    <input className="ms-5" type="checkbox" name={network.name + '@show'} checked={network.show} onChange={toogleCheckbox} /></>
                                  : network.show ? <a href={network.url + network.userName}><i className={network.className}></i></a> : null}
                            </li>
                            : null
