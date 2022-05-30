@@ -66,7 +66,7 @@ function Header(props) {
 
    return (
       <header id="home">
-         <nav id="nav-wrap">
+         <nav className="nav justify-content-center" id="nav-wrap">
             <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
             <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
             <ul id="nav" className="nav">
@@ -77,7 +77,7 @@ function Header(props) {
                <li><a className="smoothscroll" href="#testimonials">Testimonios</a></li>
                <li><a className="smoothscroll" href="#contact">Contácteme</a></li>
             </ul>
-            {!props.editorMode ? <div className="editSite">
+            {!props.editorMode ? <div className="editSite row">
                <a onClick={modifyEditorMode} href="#home">Editar sitio</a>
             </div> : null}
          </nav>
