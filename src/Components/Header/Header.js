@@ -104,6 +104,13 @@ function Header(props) {
                   }
                   )}
                </ul>
+               <div>
+                  {!props.editorMode ?
+                     <a href="#" className="button" onClick={props.downloadCV}> <i className="fa fa-download"></i>Descargar currículum</a>
+                     : null
+                  }
+
+               </div>
             </div>
          </div>
          <p className="scrolldown">

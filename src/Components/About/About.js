@@ -1,10 +1,10 @@
-import React from 'react';
+import {React, useState} from 'react';
 import './About.css'
 
 function About(props) {
-   function handleChange(evt) {
-      const { name, value } = evt.target;
 
+   const handleChange = (evt) => {
+      const { name, value } = evt.target;
       const newValues = {
          ...props.data,
          about: {
@@ -16,6 +16,7 @@ function About(props) {
    }
 
    return (
+      <div>
       <section id="about">
          <div className="row">
             <div className="three columns">
@@ -34,7 +35,7 @@ function About(props) {
                   <div className="columns contact-details mt-3">
                      <h2>Detalles de contacto</h2>
                      <p className="address">
-                     {props.editorMode ? 
+                        {props.editorMode ?
                            <>
                               <input className="form-control form-control-lg" type="text" name='name' onChange={handleChange} placeholder='Nombre' /> 
                               <input className="form-control form-control-lg mt-2" type="text" name='street' onChange={handleChange} placeholder='Calle donde vives' /> 
@@ -42,7 +43,7 @@ function About(props) {
                               <input className="form-control form-control-lg mt-2" type="text" name='phone' onChange={handleChange} placeholder='Telefono de contacto' /> 
                               <input className="form-control form-control-lg mt-2" type="text" name='email' onChange={handleChange} placeholder='Email de contacto' /> 
                            </>
-                        :  <>
+                           : <>
                               <span>{props.data.about.name}</span><br />
                               <span>{props.data.about.street}</span><br />
                               <span>{props.data.about.city}</span><br />
@@ -63,6 +64,7 @@ function About(props) {
          </div>
 
       </section>
+   </div>
    );
 }
 
