@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
+import { send } from 'emailjs-com';
 import './Contact.css'
 
 function Contact(props) {
-   const [formValues, setFormValues] = useState(resetFormValues());
+   const [formValues, setFormValues] = useState({
+      contactName: "",
+      contactEmail: "",
+      contactSubject: "",
+      contactMessage: "",
+   });
+
+   const [toSend, setToSend] = useState({
+      from_name: '',
+      to_name: '',
+      message: '',
+      to_email: '',
+      reply_to: '',
+    });
 
    function handleContactMessageChange(evt) {
       const { name, value } = evt.target;
@@ -17,7 +31,8 @@ function Contact(props) {
       props.setUpdatedResumeData(newValues);
    }
 
-   function handleChange(evt) {
+   function handleChange(evt) {     
+
       const { name, value } = evt.target;
 
       const newValues = {
@@ -27,19 +42,33 @@ function Contact(props) {
       setFormValues(newValues);
    }
 
-   function resetFormValues() {
-      return {
-         contactName: "",
-         contactEmail: "",
-         contactSubject: "",
-         contactMessage: "",
-      };
-   }
-
    function handleSubmit(event) {
-      event.preventDefault();
-      console.log(formValues)
-   }
+      event.preventDefault();    
+
+      setToSend({
+         from_name: formValues.contactName,
+         to_name: props.data.about.name,
+         message: formValues.contactMessage,
+         to_email: props.data.about.email,         
+         reply_to: formValues.contactEmail,
+      });
+
+      console.log(toSend);
+
+      send (
+         'service_w2r1qn1',
+         'template_90gofeb',
+         toSend,
+         'Q4wNdYdZloY5huV0w'
+       ).then((response) => {
+           console.log('SUCCESS!', response.status, response.text);
+         }).catch((err) => {
+           console.log('FAILED...', err);
+         });     
+      
+      document.getElementById("contactForm").reset();
+   
+   };
 
    return (
       <section id="contact">
@@ -49,7 +78,7 @@ function Contact(props) {
             </div>
             <div className="ten columns">
                <p className="lead">{props.data.contact.contactMessage}</p>
-               {props.editorMode ? <input type="text" name="contactMessage" placeholder='Escribe un texto de contacto' onChange={handleContactMessageChange} /> : null}
+               {props.editorMode ? <input className="form-control form-control-lg" type="text" name="contactMessage" placeholder='Escribe un texto de contacto' onChange={handleContactMessageChange} /> : null}
             </div>
          </div>
 
@@ -59,22 +88,22 @@ function Contact(props) {
                   <fieldset>
                      <div>
                         <label htmlFor="contactName">Nombre <span className="required">*</span></label>
-                        <input type="text" defaultValue="" size="35" id="contactName" name="contactName" onChange={handleChange} required="required" />
+                        <input className="form-control form-control-lg" type="text" defaultValue="" size="35" id="contactName" name="contactName" onChange={handleChange} required="required" />
                      </div>
 
                      <div>
                         <label htmlFor="contactEmail">Email <span className="required">*</span></label>
-                        <input type="text" defaultValue="" size="35" id="contactEmail" name="contactEmail" onChange={handleChange} required="required" />
+                        <input className="form-control form-control-lg" type="text" defaultValue="" size="35" id="contactEmail" name="contactEmail" onChange={handleChange} required="required" />
                      </div>
 
                      <div>
                         <label htmlFor="contactSubject">Motivo de contacto</label>
-                        <input type="text" defaultValue="" size="35" id="contactSubject" name="contactSubject" onChange={handleChange} />
+                        <input className="form-control form-control-lg" type="text" defaultValue="" size="35" id="contactSubject" name="contactSubject" onChange={handleChange} />
                      </div>
 
                      <div>
                         <label htmlFor="contactMessage">Mensaje <span className="required">*</span></label>
-                        <textarea cols="50" rows="15" id="contactMessage" name="contactMessage" onChange={handleChange} required="required" ></textarea>
+                        <textarea className="form-control form-control-lg" cols="50" rows="15" id="contactMessage" name="contactMessage" onChange={handleChange} required="required" ></textarea>
                      </div>
 
                      <div>

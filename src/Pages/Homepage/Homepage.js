@@ -107,7 +107,7 @@ export default function Homepage({ params }) {
             editorMode={editorMode}
           />
           {editorMode ? (
-            <div className="button-grpup">
+            <div className="button-group me-2">
               <button className="new-button" type="button" onClick={saveData}>
                 Guardar
               </button>
@@ -115,7 +115,7 @@ export default function Homepage({ params }) {
                 Cancelar
               </button>
               <button className="new-button" type="button" onClick={deleteInfo}>
-                Borrar mis datos
+                Limpiar
               </button>
             </div>
           ) : null}
