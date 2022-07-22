@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
+import { send } from 'emailjs-com';
 import './Contact.css'
 
 function Contact(props) {
-   const [formValues, setFormValues] = useState(resetFormValues());
+   const [formValues, setFormValues] = useState({
+      contactName: "",
+      contactEmail: "",
+      contactSubject: "",
+      contactMessage: "",
+   });
+
+   const [toSend, setToSend] = useState({
+      from_name: '',
+      to_name: '',
+      message: '',
+      to_email: '',
+      reply_to: '',
+    });
 
    function handleContactMessageChange(evt) {
       const { name, value } = evt.target;
@@ -17,7 +31,8 @@ function Contact(props) {
       props.setUpdatedResumeData(newValues);
    }
 
-   function handleChange(evt) {
+   function handleChange(evt) {     
+
       const { name, value } = evt.target;
 
       const newValues = {
@@ -27,19 +42,33 @@ function Contact(props) {
       setFormValues(newValues);
    }
 
-   function resetFormValues() {
-      return {
-         contactName: "",
-         contactEmail: "",
-         contactSubject: "",
-         contactMessage: "",
-      };
-   }
-
    function handleSubmit(event) {
-      event.preventDefault();
-      console.log(formValues)
-   }
+      event.preventDefault();    
+
+      setToSend({
+         from_name: formValues.contactName,
+         to_name: props.data.about.name,
+         message: formValues.contactMessage,
+         to_email: props.data.about.email,         
+         reply_to: formValues.contactEmail,
+      });
+
+      console.log(toSend);
+
+      send (
+         'service_w2r1qn1',
+         'template_90gofeb',
+         toSend,
+         'Q4wNdYdZloY5huV0w'
+       ).then((response) => {
+           console.log('SUCCESS!', response.status, response.text);
+         }).catch((err) => {
+           console.log('FAILED...', err);
+         });     
+      
+      document.getElementById("contactForm").reset();
+   
+   };
 
    return (
       <section id="contact">
