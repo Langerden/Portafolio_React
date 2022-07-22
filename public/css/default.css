@@ -227,6 +227,7 @@ body {
    font-size: 15px;
    line-height: 30px;
    color: #838C95;
+   overflow-x: hidden !important; 
 
    -webkit-font-smoothing: antialiased;
    /* Fix for webkit rendering */
@@ -799,8 +800,9 @@ select {
    /* max-width: 100%; */
    /* font-size: 15px; */
    /* line-height: 24px; */
-   color: #647373;
-   background: #D3D9D9;
+   color: #647373 !important;
+   background: #D3D9D9 !important;
+   resize: none;
 
 }
 
@@ -812,7 +814,7 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 textarea:focus {
-   color: #B3B7BC;
+   color: #ffffff;
    background-color: #3d4145;
 }
 
@@ -1344,8 +1346,15 @@ properly.
    margin: 2px;
 }
 
-.button-grpup {
+.button-group {
    display: flex;
-   flex-direction: row;
-   justify-content: space-around;
+   flex-direction: column;
+   justify-content: start;
+   position: fixed; 
+   bottom: 0;
+   right: 0;
+}
+
+.new-button{
+   max-width: 100px;
 }

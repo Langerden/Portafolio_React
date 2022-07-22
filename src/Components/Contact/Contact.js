@@ -49,7 +49,7 @@ function Contact(props) {
             </div>
             <div className="ten columns">
                <p className="lead">{props.data.contact.contactMessage}</p>
-               {props.editorMode ? <input type="text" name="contactMessage" placeholder='Escribe un texto de contacto' onChange={handleContactMessageChange} /> : null}
+               {props.editorMode ? <input className="form-control form-control-lg" type="text" name="contactMessage" placeholder='Escribe un texto de contacto' onChange={handleContactMessageChange} /> : null}
             </div>
          </div>
 
@@ -59,22 +59,22 @@ function Contact(props) {
                   <fieldset>
                      <div>
                         <label htmlFor="contactName">Nombre <span className="required">*</span></label>
-                        <input type="text" defaultValue="" size="35" id="contactName" name="contactName" onChange={handleChange} required="required" />
+                        <input className="form-control form-control-lg" type="text" defaultValue="" size="35" id="contactName" name="contactName" onChange={handleChange} required="required" />
                      </div>
 
                      <div>
                         <label htmlFor="contactEmail">Email <span className="required">*</span></label>
-                        <input type="text" defaultValue="" size="35" id="contactEmail" name="contactEmail" onChange={handleChange} required="required" />
+                        <input className="form-control form-control-lg" type="text" defaultValue="" size="35" id="contactEmail" name="contactEmail" onChange={handleChange} required="required" />
                      </div>
 
                      <div>
                         <label htmlFor="contactSubject">Motivo de contacto</label>
-                        <input type="text" defaultValue="" size="35" id="contactSubject" name="contactSubject" onChange={handleChange} />
+                        <input className="form-control form-control-lg" type="text" defaultValue="" size="35" id="contactSubject" name="contactSubject" onChange={handleChange} />
                      </div>
 
                      <div>
                         <label htmlFor="contactMessage">Mensaje <span className="required">*</span></label>
-                        <textarea cols="50" rows="15" id="contactMessage" name="contactMessage" onChange={handleChange} required="required" ></textarea>
+                        <textarea className="form-control form-control-lg" cols="50" rows="15" id="contactMessage" name="contactMessage" onChange={handleChange} required="required" ></textarea>
                      </div>
 
                      <div>
